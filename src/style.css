@@ -63,6 +63,36 @@ h1
 	position: relative;
 }
 
+.find-attempt
+{
+	animation: dropFromTop 3s ease-in-out 0s 1 forwards;
+
+	color: white;
+	font-size: 3em;
+	font-weight: bold;
+	font-family: monospace;
+	letter-spacing: 2.5px;
+
+	position: fixed;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+
+	padding: 1rem 1.5rem;
+	border: 5px solid black;
+	border-radius: 20px;
+}
+
+.find-attempt.found
+{
+	background-color: green;
+}
+
+.find-attempt.not-found
+{
+	background-color: red;
+}
+
 #level-cp
 {
 	width: 100%;
@@ -83,4 +113,24 @@ h1
 #level-cp a
 {
 	color: wheat;
+}
+
+@keyframes dropFromTop
+{
+	0%
+	{
+		transform: translate(-50%, -100%);
+	}
+	25%
+	{
+		transform: translate(-50%, 12.5%);
+	}
+	75%
+	{
+		transform: translate(-50%, 12.5%);
+	}
+	100%
+	{
+		transform: translate(-50%, -100%);
+	}
 }

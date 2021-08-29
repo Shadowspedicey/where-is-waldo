@@ -1,6 +1,8 @@
+import Game from "./Game";
+
 const ClickMenu = (() =>
 {
-	const open = (e, characters) =>
+	const open = (e, level, characters) =>
 	{
 		const clickMenu = document.createElement("div");
 		clickMenu.id= "click-menu";
@@ -16,7 +18,7 @@ const ClickMenu = (() =>
 			imgDiv.classList.add("img-div");
 			const img = document.createElement("img");
 			img.src = characters[i].img;
-			if (characters[i].name === "Tom") img.style.transform = "scale(1.5)";
+			if (["Tom", "Sonic", "Dragonborn"].includes(characters[i].name)) img.style.transform = "scale(1.5)";
 			imgDiv.appendChild(img);
 			character.appendChild(imgDiv);
 
@@ -25,6 +27,9 @@ const ClickMenu = (() =>
 			character.appendChild(name);
 
 			clickMenu.appendChild(character);
+			const x = Math.round(e.pageX / e.target.offsetWidth * 1000);
+			const y = Math.round(e.pageY / e.target.offsetHeight * 1000);
+			character.addEventListener("click", () => Game.handleMenuClick(x, y, level, characters[i].name));
 		}
 
 		document.querySelector("#content").appendChild(clickMenu);
