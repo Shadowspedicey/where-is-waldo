@@ -28,8 +28,8 @@ const ClickMenu = (() =>
 
 			clickMenu.appendChild(character);
 			const x = Math.round(e.pageX / e.target.offsetWidth * 1000);
-			const y = Math.round(e.pageY / e.target.offsetHeight * 1000);
-			character.addEventListener("click", () => Game.handleMenuClick(x, y, level, characters[i].name));
+			const y = Math.round((e.pageY - 75) / e.target.offsetHeight * 1000);
+			character.addEventListener("click", () => Game.handleMenuClick(x, y, level, characters[i].name, i));
 		}
 
 		document.querySelector("#content").appendChild(clickMenu);
