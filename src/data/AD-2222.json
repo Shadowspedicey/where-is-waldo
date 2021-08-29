@@ -10,5 +10,13 @@
 	{
 		"name": "Tom",
 		"img": "./characters/Tom.png"
+	},
+	{
+		"name": "Dragonborn",
+		"img": "./characters/Dragonborn.png"
+	},
+	{
+		"name": "Sonic",
+		"img": "./characters/Sonic.png"
 	}
 ]
