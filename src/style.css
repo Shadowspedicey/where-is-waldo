@@ -2,3 +2,85 @@ h1
 {
 	color: red;
 }
+
+#click-menu
+{
+	width: 275px;
+	background-image: url(./images/ClickMenuBG.png);
+	background-position: center;
+	background-size: cover;
+
+	color: #CDCECD;
+	font-size: 2em;
+	font-weight: bold;
+	/* Gonna change this font family*/
+	font-family: monospace;
+	letter-spacing: 0px;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+
+	position: absolute;
+
+	padding: 0.5rem 1rem;
+	border: 10px solid black;
+	border-radius: 20px;
+}
+
+#click-menu .character
+{
+	height: 100px;
+	
+	display: flex;
+	flex-grow: 1;
+	align-items: center;
+
+	cursor: pointer;
+	position: relative;
+	
+	margin: 0.5rem 0;
+}
+
+#click-menu .character .img-div
+{
+	max-width: 60px;
+	height: 100%;
+
+	display: flex;
+	align-items: center;
+
+	margin-right: 1rem;
+}
+
+#click-menu .character .img-div img
+{
+	max-height: 100%;
+}
+
+.level-container
+{
+	position: relative;
+}
+
+#level-cp
+{
+	width: 100%;
+	height: 50px;
+	background-color: black;
+
+	color: white;
+	font-size: 2em;
+	/* probably gonna change this as well lol */
+	font-family: monospace;
+	font-weight: bold;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#level-cp a
+{
+	color: wheat;
+}

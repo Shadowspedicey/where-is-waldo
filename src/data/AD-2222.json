@@ -1,0 +1,14 @@
+[
+	{
+		"name": "Wilson",
+		"img": "./characters/Wilson.png"
+	},
+	{
+		"name": "Spider-Man",
+		"img": "./characters/Spider-Man.png"
+	},
+	{
+		"name": "Tom",
+		"img": "./characters/Tom.png"
+	}
+]
