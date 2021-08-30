@@ -1,6 +1,7 @@
 import { db } from "./firebase";
 import { getDoc, doc, setDoc, deleteDoc } from "firebase/firestore";
 import uniqid from "uniqid";
+import ClickMenu from "./ClickMenu";
 
 const Game = (() =>
 {
@@ -9,6 +10,43 @@ const Game = (() =>
 
 	// 0 representes not found while 1 represents found
 	const foundCharacters = [0, 0, 0];
+
+	const create = (level, cp, data) =>
+	{
+		const levelContainer = document.createElement("div");
+		levelContainer.id = "level-container";
+
+		const stopwatch = document.createElement("div");
+		stopwatch.id = "stopwatch";
+		stopwatch.innerHTML = "<span id='hrs'>00</span>:<span id='mins'>00</span>:<span id='secs'>00</span>";
+		levelContainer.appendChild(stopwatch);
+
+		const levelImg = document.createElement("img");
+		levelImg.src = level.img;
+		levelContainer.appendChild(levelImg);
+
+		const levelCp = document.createElement("div");
+		levelCp.id = "level-cp";
+		levelCp.innerHTML = "<span>Level image was created by </span>";
+		levelContainer.appendChild(levelCp);
+
+		document.querySelector("#content").appendChild(levelContainer);
+
+		// Copyrights
+		const creator = document.createElement("a");
+		creator.href = cp.link;
+		creator.textContent = cp.name;
+		document.querySelector("#level-cp span").appendChild(creator);
+
+		start(level.name, data);
+	};
+
+	const start = (levelName, data) =>
+	{
+		const shuffled = data.sort(() => 0.5 - Math.random());
+		let newData = shuffled.slice(0, 3);
+		window.addEventListener("click", (e) => document.querySelector("#click-menu") ? ClickMenu.close() : ClickMenu.open(e, levelName, newData));
+	};
 
 	const handleMenuClick = async (x, y, level, character, index) =>
 	{
@@ -107,7 +145,7 @@ const Game = (() =>
 		return undefined;
 	};
 	
-	return { handleMenuClick };
+	return { handleMenuClick, create };
 })();
 
 export default Game;
