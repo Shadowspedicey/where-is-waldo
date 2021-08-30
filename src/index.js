@@ -10,7 +10,7 @@ document.querySelector("img").src = AD_2222;
 const shuffled = data.sort(() => 0.5 - Math.random());
 let newData = shuffled.slice(0, 3);
 
-window.addEventListener("click", (e) =>	console.log(Math.round(e.pageX / e.target.offsetWidth * 1000), Math.round(e.pageY / e.target.height * 1000), e));
+window.addEventListener("click", (e) =>	console.log(Math.round(e.pageX / e.target.offsetWidth * 1000), Math.round((e.pageY - 75) / e.target.height * 1000), e));
 window.addEventListener("click", (e) => document.querySelector("#click-menu") ? ClickMenu.close() : ClickMenu.open(e, "AD-2222", newData));
 
 const creator = document.createElement("a");

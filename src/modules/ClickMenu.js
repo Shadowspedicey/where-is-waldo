@@ -16,7 +16,6 @@ const ClickMenu = (() =>
 			imgDiv.classList.add("img-div");
 			const img = document.createElement("img");
 			img.src = characters[i].img;
-			if (["Tom", "Sonic", "Dragonborn"].includes(characters[i].name)) img.style.transform = "scale(1.5)";
 			imgDiv.appendChild(img);
 			character.appendChild(imgDiv);
 			
