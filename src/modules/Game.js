@@ -17,6 +17,8 @@ const Game = (() =>
 		{
 			if (y > characterInfo.y.min && y < characterInfo.y.max)
 			{
+				if (foundCharacters[index] === 1) return;
+				else found(character);
 				foundCharacters[index] = 1;
 				if (checkIfWon())
 				{
@@ -29,16 +31,18 @@ const Game = (() =>
 							},
 						}, { merge: true });
 					
+					// Testing purposes
 					(async () =>
 					{
 						const data = await getDoc(doc(db, "attempts", id)).then(data => data.data());
-						console.log(Math.round((data.time.end - data.time.start) / 1000));
+						console.log(new Date(data.time.end - data.time.start).toISOString().substr(14, 5));
 					})();
 				}
-				return found(character);
+				console.log(index);
 			}
+			else notFound();
 		}
-		notFound();
+		else notFound();
 	};
 
 	const found = name =>
