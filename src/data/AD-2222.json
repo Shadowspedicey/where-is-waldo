@@ -18,5 +18,21 @@
 	{
 		"name": "Sonic",
 		"img": "./characters/Sonic.png"
+	},
+	{
+		"name": "Connor",
+		"img": "./characters/Connor.png"
+	},
+	{
+		"name": "Finn",
+		"img": "./characters/Finn.png"
+	},
+	{
+		"name": "Overwatch Elite",
+		"img": "./characters/Overwatch-Elite.png"
+	},
+	{
+		"name": "Kratos",
+		"img": "./characters/Kratos.png"
 	}
 ]
