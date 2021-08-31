@@ -1,38 +1,48 @@
-[
+{
+	"name": "AD-2222",
+	"img": "./9527d03d73626cae7436.jpg", 
+	"cp":
 	{
-		"name": "Wilson",
-		"img": "./characters/Wilson.png"
+		"name": "Anamoly World",
+		"link": "https://anomaly-world.com"
 	},
-	{
-		"name": "Spider-Man",
-		"img": "./characters/Spider-Man.png"
-	},
-	{
-		"name": "Tom",
-		"img": "./characters/Tom.png"
-	},
-	{
-		"name": "Dragonborn",
-		"img": "./characters/Dragonborn.png"
-	},
-	{
-		"name": "Sonic",
-		"img": "./characters/Sonic.png"
-	},
-	{
-		"name": "Connor",
-		"img": "./characters/Connor.png"
-	},
-	{
-		"name": "Finn",
-		"img": "./characters/Finn.png"
-	},
-	{
-		"name": "Overwatch Elite",
-		"img": "./characters/Overwatch-Elite.png"
-	},
-	{
-		"name": "Kratos",
-		"img": "./characters/Kratos.png"
-	}
-]
+	"characters":
+	[
+		{
+			"name": "Wilson",
+			"img": "./characters/Wilson.png"
+		},
+		{
+			"name": "Spider-Man",
+			"img": "./characters/Spider-Man.png"
+		},
+		{
+			"name": "Tom",
+			"img": "./characters/Tom.png"
+		},
+		{
+			"name": "Dragonborn",
+			"img": "./characters/Dragonborn.png"
+		},
+		{
+			"name": "Sonic",
+			"img": "./characters/Sonic.png"
+		},
+		{
+			"name": "Connor",
+			"img": "./characters/Connor.png"
+		},
+		{
+			"name": "Finn",
+			"img": "./characters/Finn.png"
+		},
+		{
+			"name": "Overwatch Elite",
+			"img": "./characters/Overwatch-Elite.png"
+		},
+		{
+			"name": "Kratos",
+			"img": "./characters/Kratos.png"
+		}
+	]
+}

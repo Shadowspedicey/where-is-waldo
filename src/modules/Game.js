@@ -13,13 +13,15 @@ const Game = (() =>
 
 	const create = (level, cp, data) =>
 	{
+		document.querySelector("#content").innerHTML = "";
+
 		const levelContainer = document.createElement("div");
 		levelContainer.id = "level-container";
 
-		const stopwatch = document.createElement("div");
-		stopwatch.id = "stopwatch";
-		stopwatch.innerHTML = "<span id='hrs'>00</span>:<span id='mins'>00</span>:<span id='secs'>00</span>";
-		levelContainer.appendChild(stopwatch);
+		const stopwatchDiv = document.createElement("div");
+		stopwatchDiv.id = "stopwatch";
+		stopwatchDiv.innerHTML = "<span id='hrs'>00</span>:<span id='mins'>00</span>:<span id='secs'>00</span>";
+		levelContainer.appendChild(stopwatchDiv);
 
 		const levelImg = document.createElement("img");
 		levelImg.src = level.img;
@@ -31,6 +33,26 @@ const Game = (() =>
 		levelContainer.appendChild(levelCp);
 
 		document.querySelector("#content").appendChild(levelContainer);
+
+		// Stopwatch starter
+		stopwatch = setInterval(() =>
+		{
+			const secs = document.querySelector("#stopwatch #secs");
+			const mins = document.querySelector("#stopwatch #mins");
+			const hrs = document.querySelector("#stopwatch #hrs");
+
+			secs.textContent = `0${parseInt(secs.textContent) + 1}`.slice(-2);
+			if (parseInt(secs.textContent) === 60)
+			{
+				secs.textContent = "00";
+				mins.textContent = `0${parseInt(mins.textContent) + 1}`.slice(-2);
+				if (parseInt(mins.textContent) === 60)
+				{
+					mins.textContent = "00";
+					hrs.textContent = `0${parseInt(hrs.textContent) + 1}`.slice(-2);
+				}
+			}
+		}, 1000);
 
 		// Copyrights
 		const creator = document.createElement("a");
@@ -46,6 +68,14 @@ const Game = (() =>
 		const shuffled = data.sort(() => 0.5 - Math.random());
 		let newData = shuffled.slice(0, 3);
 		window.addEventListener("click", (e) => document.querySelector("#click-menu") ? ClickMenu.close() : ClickMenu.open(e, levelName, newData));
+
+		setDoc(doc(db, "attempts", id),
+			{
+				time: 
+				{
+					start: new Date().getTime(),
+				},
+			}, { merge: true });
 	};
 
 	const handleMenuClick = async (x, y, level, character, index) =>
@@ -109,35 +139,6 @@ const Game = (() =>
 		}
 		return true;
 	};
-
-	// Should run when img loads
-	stopwatch = setInterval(() =>
-	{
-		const secs = document.querySelector("#stopwatch #secs");
-		const mins = document.querySelector("#stopwatch #mins");
-		const hrs = document.querySelector("#stopwatch #hrs");
-
-		secs.textContent = `0${parseInt(secs.textContent) + 1}`.slice(-2);
-		if (parseInt(secs.textContent) === 60)
-		{
-			secs.textContent = "00";
-			mins.textContent = `0${parseInt(mins.textContent) + 1}`.slice(-2);
-			if (parseInt(mins.textContent) === 60)
-			{
-				mins.textContent = "00";
-				hrs.textContent = `0${parseInt(hrs.textContent) + 1}`.slice(-2);
-			}
-		}
-	}, 1000);
-
-	// Should also run when img loads
-	setDoc(doc(db, "attempts", id),
-		{
-			time: 
-			{
-				start: new Date().getTime(),
-			},
-		}, { merge: true });
 		
 	window.onbeforeunload = () =>
 	{

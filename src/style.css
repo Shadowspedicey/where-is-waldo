@@ -1,6 +1,169 @@
-h1
+#content
 {
-	color: red;
+	height: 100%;
+}
+
+.selection-arrow
+{
+	width: 50px;
+	height: 50px;
+	background-color: rgba(0, 0, 0, 0.25);
+
+	cursor: pointer;
+	transform: 
+		rotate(var( --rotate, 0 ))
+		scale(var( --scale, 1 ));
+	transition: transform 0.125s ease-in-out;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+	border-radius: 25px;
+	padding-left: 0.125rem;
+	margin: 0 2.5rem;
+}
+
+.selection-arrow:hover
+{
+	--scale: 1.25;
+	box-shadow: 0 0 15px 2.5px rgb(32, 32, 32);
+}
+
+.selection-arrow svg
+{
+	width: 35px;
+	height: 35px;
+}
+
+.selection-arrow.left
+{
+	--rotate: 180deg;
+}
+
+#level-selection::before
+{
+	content: "";
+	width: 100%;
+	height: 100%;
+
+	background-image: url(https://c4.wallpaperflare.com/wallpaper/868/40/47/waldo-cartoon-where-s-wally-wallpaper-preview.jpg);
+	background-position: center; 
+	background-size: cover;
+	background-repeat: no-repeat;
+	filter: blur(5px);
+
+	position: absolute;
+	top: 0;
+	z-index: -1;
+
+	transform: scale(1.125);
+}
+#level-selection
+{
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	position: relative;
+}
+
+#level-viewer
+{
+	width: 750px;
+	height: 775px;
+	background-color: rgba(0, 0, 0, 0.25);
+	overflow: hidden;
+
+	box-shadow: 0 0 50px 5px black;
+	border-radius: 25px;
+}
+
+#level-slides-container
+{
+	width: max-content;
+	height: 100%;
+
+	display: flex;
+	gap: 5rem;
+
+	position: relative;
+	/* transform: translateX(calc(-550px + -5rem)); */
+}
+
+.level-slide
+{
+	width: 750px;
+	height: 775px;
+	
+	cursor: pointer;
+	user-select: none;
+
+	display: flex;
+}
+
+.level-slide:hover .level-slide-img-container img
+{
+	transform: scale(1.125);
+}
+
+.level-slide .level-slide-img-container
+{
+	height: 100%;
+	overflow: hidden;
+}
+
+.level-slide-img-container img
+{
+	width: initial;
+	height: 100%;
+
+	transition: transform 0.5s ease-in-out;
+}
+
+.level-slide .possible-characters
+{
+	flex-grow: 1;
+	
+	font-family: "Montserrat";
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	padding: 0.5rem;
+}
+
+.possible-characters ul
+{
+	flex-grow: 1;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+}
+
+.possible-characters ul li
+{
+	height: 65.5px;
+
+	font-size: 2.1em;
+	font-family: "Montserrat";
+
+	display: flex;
+	align-items: center;
+}
+.possible-characters ul li img
+{
+	width: 100px;
+	max-height: 100%;
+
+	object-fit: contain;
+	margin-right: 0.75rem;
 }
 
 #click-menu
@@ -152,5 +315,36 @@ h1
 	100%
 	{
 		transform: translate(-50%, -100%);
+	}
+}
+
+@keyframes sliderToRight
+{
+	15%
+	{
+		transform: translateX(25px);
+	}
+	85%
+	{
+		transform: translateX(calc(-775px + -5rem));
+	}
+	100%
+	{		
+		transform: translateX(calc(-750px + -5rem));
+	}
+}
+@keyframes sliderToLeft
+{
+	15%
+	{
+		transform: translateX(-25px);
+	}
+	85%
+	{
+		transform: translateX(calc(775px + 5rem));
+	}
+	100%
+	{		
+		transform: translateX(calc(750px + 5rem));
 	}
 }
