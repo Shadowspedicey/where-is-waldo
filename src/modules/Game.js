@@ -115,13 +115,12 @@ const Game = (() =>
 							},
 						}, { merge: true });
 					
-					// Testing purposes
 					(async () =>
 					{
 						document.body.style.overflow = "hidden";
 						const data = await getDoc(doc(db, "attempts", id)).then(data => data.data());
 						const time = new Date(data.time.end - data.time.start).toISOString().substr(11, 8);
-						WinScreen.create(time);
+						WinScreen.create(time, level);
 					})();
 				}
 			}

@@ -5,7 +5,7 @@ import { id } from "./Game";
 
 const WinScreen = (() =>
 {
-	const create = playerTime =>
+	const create = (playerTime, level) =>
 	{
 		const winScreenContainer = document.createElement("div");
 		winScreenContainer.id = "win-screen-container";
@@ -68,7 +68,7 @@ const WinScreen = (() =>
 		const sumbit = document.createElement("button");
 		sumbit.id = "submit";
 		sumbit.textContent = "Submit";
-		sumbit.addEventListener("click", () => submitScore(playerTime));
+		sumbit.addEventListener("click", () => submitScore(playerTime, level));
 		lower.appendChild(sumbit);
 
 		winScreen.appendChild(lower);
@@ -78,11 +78,11 @@ const WinScreen = (() =>
 		document.querySelector("#content").insertBefore(winScreenContainer, document.querySelector("#content").firstChild);
 	};
 
-	const submitScore = time =>
+	const submitScore = (time, level) =>
 	{
 		if (!checkName()) return;
 		const name = checkName();
-		addToLeaderboard(name, time);
+		addToLeaderboard(name, time, level);
 		close();
 	};
 
@@ -98,7 +98,7 @@ const WinScreen = (() =>
 		return name.value;
 	};
 
-	const addToLeaderboard = async (name, time) =>
+	const addToLeaderboard = async (name, time, level) =>
 	{
 		// tries to get pb and compares it with current time
 		let data = await getDoc(doc(db, "leaderboard", id)).then(data => data.data());
@@ -120,6 +120,7 @@ const WinScreen = (() =>
 					{
 						name,
 						time,
+						level,
 					}
 				});
 		} catch (error)
@@ -132,6 +133,7 @@ const WinScreen = (() =>
 						{
 							name,
 							time,
+							level,
 						}
 					});
 			}

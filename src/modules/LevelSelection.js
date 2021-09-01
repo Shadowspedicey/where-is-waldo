@@ -1,3 +1,5 @@
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "./firebase";
 import Game from "./Game";
 import AD_2222 from "../data/AD-2222.json";
 import The_Boys from "../data/The-Boys.json";
@@ -64,6 +66,58 @@ const LevelSelection = (() =>
 				setTimeout(() => levelSelectionDiv.remove(), 1000);
 			}, {once: true});
 		}
+		(async () =>
+		{
+			const leaderboardContainer = document.createElement("div");
+			leaderboardContainer.classList.add("level-slide");
+			leaderboardContainer.id = "leaderboard-container";
+
+			const leaderboardH1 = document.createElement("h1");
+			leaderboardH1.textContent = "Leaderboard";
+			leaderboardContainer.appendChild(leaderboardH1);
+
+			const leaderboard = document.createElement("div");
+			leaderboard.id = "leaderboard";
+
+			const players = [];
+			(await getDocs(collection(db, "leaderboard"))).forEach(doc => players.push(...Object.values(doc.data())));
+			players.sort((a, b) => a.time > b.time ? 1 : -1);
+			for (let i = -1; i < players.length; i++)
+			{
+				const playerDiv = document.createElement("div");
+				playerDiv.classList.add("player");
+				i === -1 ? playerDiv.classList.add("header") : null;
+
+				const ranking = document.createElement("span");
+				ranking.id = "ranking";
+				if (i === -1) ranking.textContent = "Ranking";
+				else ranking.textContent = i + 1;
+				playerDiv.appendChild(ranking);
+
+				const playerName = document.createElement("span");
+				playerName.id = "name";
+				if (i === -1) playerName.textContent = "Name";
+				else playerName.textContent = players[i].name;
+				playerDiv.appendChild(playerName);
+
+				const level = document.createElement("span");
+				level.id = "level";
+				if (i === -1) level.textContent = "Level";
+				else level.textContent = players[i].level || "Ass";
+				playerDiv.appendChild(level);
+
+				const playerTime = document.createElement("span");
+				playerTime.id = "time";
+				if (i === -1) playerTime.textContent = "Time";
+				else playerTime.textContent = players[i].time;
+				playerDiv.appendChild(playerTime);
+
+				leaderboard.appendChild(playerDiv);
+			}
+			leaderboardContainer.appendChild(leaderboard);
+
+			levelSlidesContainer.appendChild(leaderboardContainer);
+		})();
 		levelViewer.appendChild(levelSlidesContainer);
 		levelSelectionDiv.appendChild(levelViewer);
 
@@ -80,10 +134,14 @@ const LevelSelection = (() =>
 	const slide = (() =>
 	{
 		const rem = parseFloat(window.getComputedStyle(document.body.parentElement, null).getPropertyValue("font-size"));
+		let canSlide = true;
 		
 		const right = () =>
 		{
-			if (slidesN === slides.length - 1) return;
+			if (!canSlide) return;
+			if (slidesN === slides.length) return;
+			canSlide = false;
+			setTimeout(() => canSlide = true, 1000);
 			const levelSlidesContainerDiv = document.querySelector("#level-slides-container");
 			let prevLeft = parseInt(levelSlidesContainerDiv.style.left) || 0;
 			levelSlidesContainerDiv.style.animation = "sliderToRight 1s ease-in-out 0s 1 forwards";
@@ -97,7 +155,10 @@ const LevelSelection = (() =>
 
 		const left = () =>
 		{
+			if (!canSlide) return;
 			if (slidesN === 0) return;
+			canSlide = false;
+			setTimeout(() => canSlide = true, 1000);
 			const levelSlidesContainerDiv = document.querySelector("#level-slides-container");
 			let prevLeft = parseInt(levelSlidesContainerDiv.style.left) || 0;
 			levelSlidesContainerDiv.style.animation = "sliderToLeft 1s ease-in-out 0s 1 forwards";

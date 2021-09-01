@@ -168,6 +168,69 @@
 	margin-right: 0.75rem;
 }
 
+#leaderboard-container
+{
+	flex-direction: column;
+	align-items: center;
+	cursor: initial;
+
+	font-family: "Montserrat";
+
+	padding: 1rem;
+}
+
+#leaderboard-container > h1
+{
+	font-size: 2.75em;
+	margin-bottom: 1.5rem;
+}
+
+#leaderboard
+{
+	width: 100%;
+}
+
+#leaderboard .header
+{
+	font-size: 2.25em !important;
+	font-weight: bold;
+
+	margin-bottom: 1rem;
+}
+
+#leaderboard .player
+{
+	width: 100%;
+	
+	text-align: center;
+	font-size: 1.75em;
+
+	display: flex;
+	justify-content: space-between;
+
+	margin-bottom: 0.25rem;
+}
+
+#leaderboard .player #ranking
+{
+	width: 150px;
+}
+
+#leaderboard .player #name
+{
+	width: 170px;
+}
+
+#leaderboard .player #level
+{
+	width: 130px;
+}
+
+#leaderboard .player #time
+{
+	width: 120px;
+}
+
 #click-menu
 {
 	width: 312.5px;
