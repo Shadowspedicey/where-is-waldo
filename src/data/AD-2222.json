@@ -10,39 +10,39 @@
 	[
 		{
 			"name": "Wilson",
-			"img": "./characters/Wilson.png"
+			"img": "./characters/AD-2222/Wilson.png"
 		},
 		{
 			"name": "Spider-Man",
-			"img": "./characters/Spider-Man.png"
+			"img": "./characters/AD-2222/Spider-Man.png"
 		},
 		{
 			"name": "Tom",
-			"img": "./characters/Tom.png"
+			"img": "./characters/AD-2222/Tom.png"
 		},
 		{
 			"name": "Dragonborn",
-			"img": "./characters/Dragonborn.png"
+			"img": "./characters/AD-2222/Dragonborn.png"
 		},
 		{
 			"name": "Sonic",
-			"img": "./characters/Sonic.png"
+			"img": "./characters/AD-2222/Sonic.png"
 		},
 		{
 			"name": "Connor",
-			"img": "./characters/Connor.png"
+			"img": "./characters/AD-2222/Connor.png"
 		},
 		{
 			"name": "Finn",
-			"img": "./characters/Finn.png"
+			"img": "./characters/AD-2222/Finn.png"
 		},
 		{
 			"name": "Overwatch Elite",
-			"img": "./characters/Overwatch-Elite.png"
+			"img": "./characters/AD-2222/Overwatch-Elite.png"
 		},
 		{
 			"name": "Kratos",
-			"img": "./characters/Kratos.png"
+			"img": "./characters/AD-2222/Kratos.png"
 		}
 	]
 }

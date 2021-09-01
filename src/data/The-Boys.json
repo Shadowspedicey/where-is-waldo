@@ -1,0 +1,36 @@
+{
+	"name": "The-Boys",
+	"img": "./The-Boys.png", 
+	"cp":
+	{
+		"name": "Sickpupz",
+		"link": "https://www.instagram.com/danielkeoghart/"
+	},
+	"characters":
+	[
+		{
+			"name": "Etika",
+			"img": "./characters/The-Boys/Etika.png"
+		},
+		{
+			"name": "Joe Rogan",
+			"img": "./characters/The-Boys/Joe Rogan.png"
+		},
+		{
+			"name": "Raphael",
+			"img": "./characters/The-Boys/Raphael.png"
+		},
+		{
+			"name": "Stan Lee",
+			"img": "./characters/The-Boys/Stan Lee.png"
+		},
+		{
+			"name": "The Boys",
+			"img": "./characters/The-Boys/The Boys.png"
+		},
+		{
+			"name": "Waldo",
+			"img": "./characters/The-Boys/Waldo.png"
+		}
+	]
+}

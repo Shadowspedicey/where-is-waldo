@@ -1,9 +1,10 @@
 import Game from "./Game";
 import AD_2222 from "../data/AD-2222.json";
+import The_Boys from "../data/The-Boys.json";
 
 const LevelSelection = (() =>
 {
-	const slides = [AD_2222, AD_2222];
+	const slides = [AD_2222, The_Boys];
 	let slidesN = 0;
 
 	const create = () =>
@@ -56,7 +57,7 @@ const LevelSelection = (() =>
 
 			levelSlidesContainer.appendChild(levelSlide);
 			levelSlide.addEventListener("click", () => 
-				setTimeout(() => Game.create({name: slides[0].name, img: slides[0].img}, slides[0].cp, slides[0].characters)), 0);
+				setTimeout(() => Game.create({name: slides[i].name, img: slides[i].img}, slides[i].cp, slides[i].characters)), 0);
 		}
 		levelViewer.appendChild(levelSlidesContainer);
 		levelSelectionDiv.appendChild(levelViewer);
