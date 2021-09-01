@@ -59,10 +59,10 @@ const LevelSelection = (() =>
 			levelSlide.addEventListener("click", () =>
 			{
 				levelSelectionDiv.style.opacity = 0;
-				document.querySelector("#content").style.overflow = "hidden";
+				document.body.style.overflow = "hidden";
 				setTimeout(() => Game.create({name: slides[i].name, img: slides[i].img}, slides[i].cp, slides[i].characters), 0);
 				setTimeout(() => levelSelectionDiv.remove(), 1000);
-			});
+			}, {once: true});
 		}
 		levelViewer.appendChild(levelSlidesContainer);
 		levelSelectionDiv.appendChild(levelViewer);

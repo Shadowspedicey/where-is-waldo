@@ -273,6 +273,163 @@
 	background-color: red;
 }
 
+.found-all
+{
+	width: max-content;
+	background-color: green;
+	animation: dropFromTopStay 1.25s ease-in-out 3s 1 forwards;
+
+	color: white;
+	font-size: 3em;
+	font-weight: bold;
+	font-family: monospace;
+	letter-spacing: 2.5px;
+
+	position: fixed;
+	top: 0;
+	left: 50%;
+	transform: translate(-50%, -100%);
+
+	padding: 1rem 1.5rem;
+	border: 5px solid black;
+	border-radius: 20px;
+}
+
+#win-screen-container
+{
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.75);
+	opacity: 0;
+	transition: opacity 0.5s ease-in-out;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	position: fixed;
+	z-index: 999;
+}
+
+#win-screen
+{
+	width: 750px;
+	height: 500px;
+	background-color: green;
+	transition: transform 1s ease-in-out;
+	transform: translateX(100vw);
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	padding: 0.75rem;
+	border: 7.5px solid black;
+}
+
+#win-screen .upper, #win-screen .lower
+{
+	width: 100%;
+}
+
+#win-screen .upper, #win-screen .lower
+{
+	height: 50%;
+	
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+
+#win-screen .upper
+{
+	text-align: center;
+}
+
+#win-screen .upper h1
+{
+	font-family: "Primus";
+	font-size: 4.5em;
+	font-weight: 800;
+	letter-spacing: 10px;
+}
+
+#win-screen .upper #time-div
+{
+	margin-bottom: 1.25rem;
+}
+
+#win-screen .upper h2
+{
+	height: 52.5px;
+
+	color: white;
+	font-size: 2.75em;
+	font-family: "Poppins";
+	font-weight: 300;
+	letter-spacing: 1.75px;
+}
+
+#win-screen .upper .time
+{
+	color: white;
+	font-size: 2em;
+	font-family: "Poppins";
+	font-weight: 200;
+}
+
+#win-screen .lower
+{
+	align-items: initial;
+}
+
+#win-screen .lower .input-box
+{
+	display: flex;
+	flex-direction: column;
+}
+
+#win-screen .lower .input-box label
+{
+	font-size: 2.25em;
+	font-family: "Montserrat";
+
+	margin-bottom: 0.125rem;
+}
+
+#win-screen .lower .input-box input
+{
+	width: 100%;
+
+	font-size: 1.25em;
+	font-family: "Montserrat";
+	font-weight: 600;
+
+	padding: 0.25rem;
+	border: 1px solid black;
+}
+
+#win-screen .lower #submit
+{
+	width: max-content;
+	background-color: rgb(255, 218, 150);
+	
+	align-self: center;
+	color: black;
+	font-size: 2.5em;
+	font-family: "Poppins";
+	font-weight: 100;
+	
+	padding: 0 0.5rem;
+	border: 2.5px solid black;
+}
+
+#win-screen .lower #submit:hover
+{
+	background-color: rgb(255, 206, 115);
+}
+
 #level-cp
 {
 	width: 100%;
@@ -312,6 +469,14 @@
 	100%
 	{
 		transform: translate(-50%, -100%);
+	}
+}
+
+@keyframes dropFromTopStay
+{
+	100%
+	{
+		transform: translate(-50%, 12.5%);
 	}
 }
 

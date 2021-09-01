@@ -10,7 +10,6 @@
 html, body
 {
 	min-height: 100%;
-	height: 100%;
 	margin: 0;
 }
 
@@ -28,4 +27,14 @@ img
 ul li
 {
 	list-style: none;
+}
+
+.round
+{
+	border-radius: 25px;
+}
+
+@font-face {
+	font-family: "Primus";
+	src: url(./fonts/Primus.woff);
 }

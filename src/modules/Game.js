@@ -2,6 +2,7 @@ import { db } from "./firebase";
 import { getDoc, doc, setDoc, deleteDoc } from "firebase/firestore";
 import uniqid from "uniqid";
 import ClickMenu from "./ClickMenu";
+import WinScreen from "./WinScreen";
 
 const Game = (() =>
 {
@@ -15,7 +16,7 @@ const Game = (() =>
 	{
 		const levelContainer = document.createElement("div");
 		levelContainer.id = "level-container";
-		setTimeout(() => document.querySelector("#content").style.overflow = "", 500);
+		setTimeout(() => document.body.style.overflow = "", 500);
 
 		const stopwatchDiv = document.createElement("div");
 		stopwatchDiv.id = "stopwatch";
@@ -64,10 +65,13 @@ const Game = (() =>
 
 	const start = (levelName, data) =>
 	{
+		// Randomize characters
 		const shuffled = data.sort(() => 0.5 - Math.random());
 		let newData = shuffled.slice(0, 3);
+		// Initialize the click menu
 		window.addEventListener("click", (e) => document.querySelector("#click-menu") ? ClickMenu.close() : ClickMenu.open(e, levelName, newData));
 
+		// Sets time started on server to prevent cheating
 		setDoc(doc(db, "attempts", id),
 			{
 				time: 
@@ -80,6 +84,7 @@ const Game = (() =>
 	const handleMenuClick = async (x, y, level, character, index) =>
 	{
 		const characterInfo = await getDoc(doc(db, level, character)).then(data => data.data());
+		// Checks if mouse pos is in range of char info from server
 		if (x > characterInfo.x.min && x < characterInfo.x.max)
 		{
 			if (y > characterInfo.y.min && y < characterInfo.y.max)
@@ -89,7 +94,9 @@ const Game = (() =>
 				foundCharacters[index] = 1;
 				if (checkIfWon())
 				{
+					foundAll();
 					clearInterval(stopwatch);
+					// Sets time finished on server to prevent cheating
 					setDoc(doc(db, "attempts", id),
 						{
 							time: 
@@ -101,11 +108,12 @@ const Game = (() =>
 					// Testing purposes
 					(async () =>
 					{
+						document.body.style.overflow = "hidden";
 						const data = await getDoc(doc(db, "attempts", id)).then(data => data.data());
-						console.log(new Date(data.time.end - data.time.start).toISOString().substr(14, 5));
+						const time = new Date(data.time.end - data.time.start).toISOString().substr(14, 5);
+						WinScreen.create(time);
 					})();
 				}
-				console.log(index);
 			}
 			else notFound();
 		}
@@ -128,6 +136,14 @@ const Game = (() =>
 		notFoundDiv.textContent = "Try again...";
 		document.querySelector("#level-container").appendChild(notFoundDiv);
 		setTimeout(() => notFoundDiv.remove(), 3000);
+	};
+
+	const foundAll = () =>
+	{
+		const foundDiv = document.createElement("div");
+		foundDiv.classList.add("found-all");
+		foundDiv.textContent = "You have found all the characters";
+		document.querySelector("#level-container").appendChild(foundDiv);
 	};
 
 	const checkIfWon = () =>
