@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "firebase": "^9.0.0",
+    "pretty-checkbox": "^3.0.3",
     "regenerator-runtime": "^0.13.9",
     "uniqid": "^5.4.0"
   }

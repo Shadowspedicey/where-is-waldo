@@ -410,6 +410,13 @@
 	border: 1px solid black;
 }
 
+#win-screen .lower .pretty
+{
+	font-size: 2em;
+	font-family: "Montserrat";
+	font-weight: 600;
+}
+
 #win-screen .lower #submit
 {
 	width: max-content;

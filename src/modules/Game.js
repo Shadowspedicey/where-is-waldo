@@ -4,10 +4,20 @@ import uniqid from "uniqid";
 import ClickMenu from "./ClickMenu";
 import WinScreen from "./WinScreen";
 
+const generateID = () =>
+{
+	const id = uniqid();
+	localStorage.setItem("waldoID", id);
+	return id;
+};
+//localStorage.removeItem("waldoID");
+export const id = localStorage.getItem("waldoID") || generateID();
+
 const Game = (() =>
 {
 	let stopwatch;
-	const id = uniqid();
+
+	console.log(id);
 
 	// 0 representes not found while 1 represents found
 	const foundCharacters = [0, 0, 0];
@@ -110,7 +120,7 @@ const Game = (() =>
 					{
 						document.body.style.overflow = "hidden";
 						const data = await getDoc(doc(db, "attempts", id)).then(data => data.data());
-						const time = new Date(data.time.end - data.time.start).toISOString().substr(14, 5);
+						const time = new Date(data.time.end - data.time.start).toISOString().substr(11, 8);
 						WinScreen.create(time);
 					})();
 				}
@@ -154,7 +164,7 @@ const Game = (() =>
 		}
 		return true;
 	};
-		
+
 	window.onbeforeunload = () =>
 	{
 		deleteDoc(doc(db, "attempts", id));
