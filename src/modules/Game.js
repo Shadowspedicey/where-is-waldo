@@ -13,10 +13,9 @@ const Game = (() =>
 
 	const create = (level, cp, data) =>
 	{
-		document.querySelector("#content").innerHTML = "";
-
 		const levelContainer = document.createElement("div");
 		levelContainer.id = "level-container";
+		setTimeout(() => document.querySelector("#content").style.overflow = "", 500);
 
 		const stopwatchDiv = document.createElement("div");
 		stopwatchDiv.id = "stopwatch";
