@@ -104,9 +104,13 @@ const WinScreen = (() =>
 		let data = await getDoc(doc(db, "leaderboard", id)).then(data => data.data());
 		if (data)
 		{
-			const pb = Object.values(data).filter(player => player.name === name)[0].time;
-			console.log(pb);
-			if (time > pb) return;
+			const player = Object.values(data).filter(player => player.name === name)[0];
+			if (player)
+			{
+				const pb = player.time;
+				console.log(pb);
+				if (time > pb) return;
+			}
 		}
 		try
 		{
