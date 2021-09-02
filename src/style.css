@@ -580,3 +580,15 @@
 		transform: translateX(calc(750px + 5rem));
 	}
 }
+
+@media screen and (max-width: 1020px)
+{
+	html
+	{
+		font-size: 13px;
+	}
+	.level-slide
+	{
+		font-weight: bold;
+	}
+}
