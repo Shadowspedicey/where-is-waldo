@@ -1,15 +1,12 @@
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "./firebase";
 import Game from "./Game";
-import AD_2222 from "../data/AD-2222.json";
-import The_Boys from "../data/The-Boys.json";
-
 const LevelSelection = (() =>
 {
-	const slides = [AD_2222, The_Boys];
+	const slides = [];
 	let slidesN = 0;
 
-	const create = () =>
+	const create = async () =>
 	{
 		const levelSelectionDiv = document.createElement("div");
 		levelSelectionDiv.id = "level-selection";
@@ -18,6 +15,10 @@ const LevelSelection = (() =>
 		leftArrow.classList.add("selection-arrow", "left");
 		leftArrow.innerHTML = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z'/></svg>";
 		levelSelectionDiv.appendChild(leftArrow);
+
+		console.log("Loading...");
+		(await getDocs(collection(db, "levels"))).forEach(doc => slides.push(doc.data()));
+		console.log("Done");
 
 		const levelViewer = document.createElement("div");
 		levelViewer.id = "level-viewer";
