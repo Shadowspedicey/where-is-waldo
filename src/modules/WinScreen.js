@@ -109,14 +109,14 @@ const WinScreen = (() =>
 			{
 				const pb = player.time;
 				console.log(pb);
-				if (time > pb) return;
+				//if (time > pb) return;
 			}
 		}
 		try
 		{
 			await updateDoc(doc(db, "leaderboard", id), 
 				{
-					[name]:
+					[`${name}_${level}`]:
 					{
 						name,
 						time,
@@ -129,7 +129,7 @@ const WinScreen = (() =>
 			{
 				setDoc(doc(db, "leaderboard", id),
 					{
-						[name]:
+						[`${name}_${level}`]:
 						{
 							name,
 							time,
